@@ -1,0 +1,591 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Ken Divino</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg: #ffffff;
+      --surface: #f9f9f8;
+      --border: #ebebeb;
+      --text: #111111;
+      --text-2: #555555;
+      --text-3: #999999;
+      --blue: #2563eb;
+    }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      font-size: 14px;
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    a { color: inherit; text-decoration: none; }
+
+    .wrap {
+      max-width: 680px;
+      margin: 0 auto;
+      padding: 3.5rem 2rem 5rem;
+    }
+
+    /* ── HEADER ── */
+    .header {
+      display: flex;
+      align-items: flex-start;
+      gap: 1.4rem;
+      margin-bottom: 2.5rem;
+    }
+
+    .avatar {
+      width: 76px;
+      height: 76px;
+      border-radius: 50%;
+      background: #111;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: 'Instrument Serif', serif;
+      font-size: 1.35rem;
+      color: #fff;
+      flex-shrink: 0;
+      position: relative;
+    }
+
+    .avatar-dot {
+      position: absolute;
+      bottom: 2px; right: 2px;
+      width: 12px; height: 12px;
+      border-radius: 50%;
+      background: #16a34a;
+      border: 2px solid #fff;
+    }
+
+    .header-info {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+
+    .header-content {
+      flex: 1;
+    }
+
+    .header-name {
+      font-family: 'Inter', serif;
+      font-size: 1.6rem;
+      font-weight: bold;
+      line-height: 1.15;
+      margin-bottom: 3px;
+    }
+
+    .header-sub {
+      font-size: 12.5px;
+      color: var(--text-2);
+      margin-bottom: 4px;
+    }
+
+    .header-loc {
+      display: flex;
+      align-items: center;
+      gap: 4px;
+      font-size: 11.5px;
+      color: var(--text-3);
+      margin-bottom: 14px;
+    }
+
+    .header-loc svg { width: 11px; height: 11px; }
+
+    .btn-row {
+      display: flex;
+      gap: 7px;
+      flex-wrap: wrap;
+      align-items: start;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      padding: 7px 15px;
+      border-radius: 8px;
+      font-size: 12px;
+      font-weight: 500;
+      font-family: 'Inter', sans-serif;
+      transition: opacity 0.15s;
+      cursor: pointer;
+    }
+    .btn:hover { opacity: 0.72; }
+    .btn svg { width: 13px; height: 13px; }
+    .btn-dark { background: #111; color: #fff; border: 1px solid #111; }
+    .btn-light { background: transparent; color: var(--text-2); border: 1px solid var(--border); }
+
+    /* ── DIVIDER ── */
+    .divider { height: 1px; background: var(--border); margin: 1.75rem 0; }
+
+    /* ── SECTION ── */
+    .section { margin-bottom: 2rem; }
+
+    .section-label {
+      font-size: 10.5px;
+      font-weight: 600;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      color: var(--text-3);
+      margin-bottom: 0.9rem;
+    }
+
+    /* ── ABOUT ── */
+    .about-text {
+      font-size: 13.5px;
+      color: var(--text-2);
+      line-height: 1.9;
+    }
+
+    /* ── TECH STACK MARQUEE ── */
+    .tech-section { margin-bottom: 2rem; }
+
+    .tech-categories { display: flex; flex-direction: column; gap: 1.1rem; }
+
+    .tech-cat-row { }
+
+    .tech-cat-label {
+      font-size: 11px;
+      font-weight: 600;
+      color: var(--text-3);
+      margin-bottom: 0.55rem;
+    }
+
+    .marquee-outer {
+      overflow: hidden;
+      position: relative;
+      mask-image: linear-gradient(to right, transparent 0%, black 6%, black 94%, transparent 100%);
+      -webkit-mask-image: linear-gradient(to right, transparent 0%, black 6%, black 94%, transparent 100%);
+    }
+
+    .marquee-track {
+      display: flex;
+      gap: 8px;
+      width: max-content;
+      animation: marquee-scroll 12s linear infinite;
+    }
+
+    .marquee-track.slow { animation-duration: 16s; }
+    .marquee-track.rev { animation-direction: reverse; }
+
+    @keyframes marquee-scroll {
+      from { transform: translateX(0); }
+      to   { transform: translateX(-25%); }
+    }
+
+    .tech-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 5px 12px;
+      border-radius: 999px;
+      border: 1px solid var(--border);
+      background: var(--surface);
+      font-size: 11.5px;
+      font-weight: 500;
+      color: var(--text-2);
+      white-space: nowrap;
+      cursor: default;
+      transition: border-color 0.15s, background 0.15s;
+      user-select: none;
+    }
+
+    .tech-pill:hover {
+      background: #fff;
+      border-color: #ccc;
+    }
+
+    .tech-pill img {
+      width: 15px;
+      height: 15px;
+      object-fit: contain;
+      border-radius: 2px;
+    }
+
+    /* ── EXPERIENCE ── */
+    .exp-list { display: flex; flex-direction: column; }
+
+    .exp-item {
+      display: flex;
+      gap: 0.9rem;
+      padding: 1rem 0;
+      border-bottom: 1px solid var(--border);
+    }
+    .exp-item:first-child { padding-top: 0; }
+    .exp-item:last-child { border-bottom: none; padding-bottom: 0; }
+
+    .exp-dot {
+      width: 8px; height: 8px;
+      border-radius: 50%;
+      background: #111;
+      flex-shrink: 0;
+      margin-top: 6px;
+    }
+
+    .exp-body { flex: 1; }
+
+    .exp-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      gap: 0.5rem;
+      margin-bottom: 1px;
+    }
+
+    .exp-role { font-size: 13px; font-weight: 600; color: var(--text); line-height: 1.3; }
+
+    .exp-badge {
+      font-size: 9.5px;
+      font-weight: 600;
+      background: #eff6ff;
+      color: #2563eb;
+      border: 1px solid #bfdbfe;
+      border-radius: 999px;
+      padding: 1.5px 8px;
+      white-space: nowrap;
+      flex-shrink: 0;
+    }
+
+    .exp-co { font-size: 12px; color: var(--text-3); margin-bottom: 1px; }
+    .exp-period { font-size: 10.5px; color: var(--text-3); margin-bottom: 8px; }
+
+    .exp-bullets { padding-left: 1rem; display: flex; flex-direction: column; gap: 4px; }
+    .exp-bullets li { font-size: 12px; color: var(--text-2); line-height: 1.65; }
+
+    /* ── PROJECTS ── */
+    .project-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      gap: 1rem;
+      padding: 1rem 0;
+      border-bottom: 1px solid var(--border);
+    }
+    .project-row:first-child { border-top: 1px solid var(--border); }
+
+    .project-name { font-size: 12.5px; font-weight: 600; color: var(--text); margin-bottom: 3px; }
+
+    .project-desc { font-size: 11.5px; color: var(--text-3); line-height: 1.65; margin-bottom: 7px; }
+
+    .project-chips { display: flex; gap: 4px; flex-wrap: wrap; }
+
+    .chip {
+      font-size: 10px;
+      font-weight: 500;
+      background: var(--surface);
+      color: var(--text-3);
+      border: 1px solid var(--border);
+      padding: 1.5px 7px;
+      border-radius: 4px;
+    }
+
+    .project-link-btn {
+      font-size: 11px;
+      color: var(--text-3);
+      display: inline-flex;
+      align-items: center;
+      gap: 3px;
+      white-space: nowrap;
+      flex-shrink: 0;
+      transition: color 0.15s;
+      margin-top: 2px;
+    }
+    .project-link-btn:hover { color: var(--text); }
+
+    /* ── BOTTOM GRID ── */
+    .bottom-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 2rem;
+      margin-bottom: 2rem;
+    }
+
+    .info-label {
+      font-size: 10.5px;
+      font-weight: 600;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      color: var(--text-3);
+      margin-bottom: 8px;
+    }
+
+    .info-main { font-size: 12.5px; font-weight: 500; color: var(--text); margin-bottom: 2px; line-height: 1.35; }
+    .info-sub { font-size: 11.5px; color: var(--text-3); }
+
+    .connect-list { display: flex; flex-direction: column; gap: 6px; }
+
+    .connect-row { display: flex; align-items: center; gap: 8px; }
+
+    .connect-icon {
+      width: 24px; height: 24px;
+      border-radius: 6px;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 11px;
+      flex-shrink: 0;
+      color: var(--text-2);
+    }
+
+    .connect-link { font-size: 12px; color: var(--text-2); transition: color 0.12s; }
+    .connect-link:hover { color: var(--blue); }
+
+    footer { font-size: 11px; color: var(--text-3); margin-top: 2rem; }
+
+    @media (max-width: 520px) {
+      .header { flex-direction: column; }
+      .bottom-grid { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+<div class="wrap">
+
+  <!-- HEADER -->
+  <div class="header">
+    <div class="header-info">
+      <div class="header-content">
+        <h1 class="header-name">Ken Christian Divino</h1>
+        <p class="header-sub">Web Developer · UI/UX Designer</p>
+        <p class="header-loc">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+          Dasmariñas, Cavite, Philippines
+        </p>
+      </div>
+      <div class="btn-row">
+        <a href="mailto:divinokenchristian@gmail.com" class="btn btn-dark">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+          Send Email
+        </a>
+        <a href="https://www.linkedin.com/in/kenchristiandivino" target="_blank" class="btn btn-light">
+          <svg viewBox="0 0 24 24" fill="currentColor" width="13" height="13"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
+          LinkedIn
+        </a>
+      </div>
+    </div>
+  </div>
+   <div class="divider"></div>
+
+  <!-- ABOUT -->
+  <div class="section">
+    <p class="section-label">About</p>
+    <p class="about-text">An individual with a passion for web development and designing websites using JavaScript, React, TypeScript, and modern web development tools. Developed academic and personal projects while continuously improving coding and problem-solving skills. Eager to learn, adapt, and grow as a front-end developer.</p>
+  </div>
+
+  <div class="divider"></div>
+
+  <!-- TECH STACK with marquee -->
+  <div class="tech-section">
+    <p class="section-label">Tech Stack</p>
+    <div class="tech-categories">
+
+      <!-- Languages -->
+      <div class="tech-cat-row">
+        <p class="tech-cat-label">Languages</p>
+        <div class="marquee-outer">
+          <div class="marquee-track">
+            <span class="tech-pill"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg" alt="">JavaScript</span>
+            <span class="tech-pill"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/typescript/typescript-original.svg" alt="">TypeScript</span>
+            <span class="tech-pill"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/java/java-original.svg" alt="">Java</span>
+            <span class="tech-pill"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/cplusplus/cplusplus-original.svg" alt="">C++</span>
+            <span class="tech-pill"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg" alt="">JavaScript</span>
+            <span class="tech-pill"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/typescript/typescript-original.svg" alt="">TypeScript</span>
+            <span class="tech-pill"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/java/java-original.svg" alt="">Java</span>
+            <span class="tech-pill"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/cplusplus/cplusplus-original.svg" alt="">C++</span>
+            <span class="tech-pill"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg" alt="">JavaScript</span>
+            <span class="tech-pill"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/typescript/typescript-original.svg" alt="">TypeScript</span>
+            <span class="tech-pill"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/java/java-original.svg" alt="">Java</span>
+            <span class="tech-pill"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/cplusplus/cplusplus-original.svg" alt="">C++</span>
+            <span class="tech-pill"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg" alt="">JavaScript</span>
+            <span class="tech-pill"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/typescript/typescript-original.svg" alt="">TypeScript</span>
+            <span class="tech-pill"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/java/java-original.svg" alt="">Java</span>
+            <span class="tech-pill"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/cplusplus/cplusplus-original.svg" alt="">C++</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="tech-cat-row">
+        <p class="tech-cat-label">Frontend</p>
+        <div class="marquee-outer">
+          <div class="marquee-track slow rev">
+            <span class="tech-pill"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg" alt="">React</span>
+            <span class="tech-pill"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/html5/html5-original.svg" alt="">HTML</span>
+            <span class="tech-pill"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/css3/css3-original.svg" alt="">CSS</span>
+            <span class="tech-pill"><svg width="15" height="15" viewBox="0 0 32 32" fill="none"><rect width="32" height="32" rx="4" fill="#A9BA9D"/><text x="5" y="22" font-size="14" font-family="monospace" fill="#fff">&lt;%</text></svg>EJS</span>
+            <span class="tech-pill"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg" alt="">React</span>
+            <span class="tech-pill"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/html5/html5-original.svg" alt="">HTML</span>
+            <span class="tech-pill"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/css3/css3-original.svg" alt="">CSS</span>
+            <span class="tech-pill"><svg width="15" height="15" viewBox="0 0 32 32" fill="none"><rect width="32" height="32" rx="4" fill="#A9BA9D"/><text x="5" y="22" font-size="14" font-family="monospace" fill="#fff">&lt;%</text></svg>EJS</span>
+            <span class="tech-pill"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg" alt="">React</span>
+            <span class="tech-pill"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/html5/html5-original.svg" alt="">HTML</span>
+            <span class="tech-pill"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/css3/css3-original.svg" alt="">CSS</span>
+            <span class="tech-pill"><svg width="15" height="15" viewBox="0 0 32 32" fill="none"><rect width="32" height="32" rx="4" fill="#A9BA9D"/><text x="5" y="22" font-size="14" font-family="monospace" fill="#fff">&lt;%</text></svg>EJS</span>
+            <span class="tech-pill"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg" alt="">React</span>
+            <span class="tech-pill"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/html5/html5-original.svg" alt="">HTML</span>
+            <span class="tech-pill"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/css3/css3-original.svg" alt="">CSS</span>
+            <span class="tech-pill"><svg width="15" height="15" viewBox="0 0 32 32" fill="none"><rect width="32" height="32" rx="4" fill="#A9BA9D"/><text x="5" y="22" font-size="14" font-family="monospace" fill="#fff">&lt;%</text></svg>EJS</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Backend & DB -->
+      <div class="tech-cat-row">
+        <p class="tech-cat-label">Backend &amp; Database</p>
+        <div class="marquee-outer">
+          <div class="marquee-track">
+            <span class="tech-pill"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mysql/mysql-original.svg" alt="">MySQL</span>
+            <span class="tech-pill"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mongodb/mongodb-original.svg" alt="">MongoDB</span>
+            <span class="tech-pill"><svg width="15" height="15" viewBox="0 0 109 113" fill="none"><path d="M63.7 0L0 63.7L27 90.7L90.7 27L63.7 0Z" fill="#3ECF8E"/><path d="M0 63.7L63.7 127.4L90.7 100.4L27 36.7L0 63.7Z" fill="#3ECF8E" fill-opacity="0.6"/></svg>Supabase</span>
+            <span class="tech-pill"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mysql/mysql-original.svg" alt="">MySQL</span>
+            <span class="tech-pill"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mongodb/mongodb-original.svg" alt="">MongoDB</span>
+            <span class="tech-pill"><svg width="15" height="15" viewBox="0 0 109 113" fill="none"><path d="M63.7 0L0 63.7L27 90.7L90.7 27L63.7 0Z" fill="#3ECF8E"/><path d="M0 63.7L63.7 127.4L90.7 100.4L27 36.7L0 63.7Z" fill="#3ECF8E" fill-opacity="0.6"/></svg>Supabase</span>
+            <span class="tech-pill"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mysql/mysql-original.svg" alt="">MySQL</span>
+            <span class="tech-pill"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mongodb/mongodb-original.svg" alt="">MongoDB</span>
+            <span class="tech-pill"><svg width="15" height="15" viewBox="0 0 109 113" fill="none"><path d="M63.7 0L0 63.7L27 90.7L90.7 27L63.7 0Z" fill="#3ECF8E"/><path d="M0 63.7L63.7 127.4L90.7 100.4L27 36.7L0 63.7Z" fill="#3ECF8E" fill-opacity="0.6"/></svg>Supabase</span>
+            <span class="tech-pill"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mysql/mysql-original.svg" alt="">MySQL</span>
+            <span class="tech-pill"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mongodb/mongodb-original.svg" alt="">MongoDB</span>
+            <span class="tech-pill"><svg width="15" height="15" viewBox="0 0 109 113" fill="none"><path d="M63.7 0L0 63.7L27 90.7L90.7 27L63.7 0Z" fill="#3ECF8E"/><path d="M0 63.7L63.7 127.4L90.7 100.4L27 36.7L0 63.7Z" fill="#3ECF8E" fill-opacity="0.6"/></svg>Supabase</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Tools -->
+      <div class="tech-cat-row">
+        <p class="tech-cat-label">Tools</p>
+        <div class="marquee-outer">
+          <div class="marquee-track slow rev">
+            <span class="tech-pill"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/figma/figma-original.svg" alt="">Figma</span>
+            <span class="tech-pill"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/github/github-original.svg" alt="">GitHub</span>
+            <span class="tech-pill"><svg width="15" height="15" viewBox="0 0 76 65" fill="none"><path d="M37.5 0L75 65H0L37.5 0Z" fill="#000"/></svg>Vercel</span>
+            <span class="tech-pill"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/vscode/vscode-original.svg" alt="">VS Code</span>
+            <span class="tech-pill"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/figma/figma-original.svg" alt="">Figma</span>
+            <span class="tech-pill"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/github/github-original.svg" alt="">GitHub</span>
+            <span class="tech-pill"><svg width="15" height="15" viewBox="0 0 76 65" fill="none"><path d="M37.5 0L75 65H0L37.5 0Z" fill="#000"/></svg>Vercel</span>
+            <span class="tech-pill"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/vscode/vscode-original.svg" alt="">VS Code</span>
+            <span class="tech-pill"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/figma/figma-original.svg" alt="">Figma</span>
+            <span class="tech-pill"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/github/github-original.svg" alt="">GitHub</span>
+            <span class="tech-pill"><svg width="15" height="15" viewBox="0 0 76 65" fill="none"><path d="M37.5 0L75 65H0L37.5 0Z" fill="#000"/></svg>Vercel</span>
+            <span class="tech-pill"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/vscode/vscode-original.svg" alt="">VS Code</span>
+            <span class="tech-pill"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/figma/figma-original.svg" alt="">Figma</span>
+            <span class="tech-pill"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/github/github-original.svg" alt="">GitHub</span>
+            <span class="tech-pill"><svg width="15" height="15" viewBox="0 0 76 65" fill="none"><path d="M37.5 0L75 65H0L37.5 0Z" fill="#000"/></svg>Vercel</span>
+            <span class="tech-pill"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/vscode/vscode-original.svg" alt="">VS Code</span>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <div class="divider"></div>
+
+  <!-- EXPERIENCE -->
+  <div class="section">
+    <p class="section-label">Experience</p>
+    <div class="exp-list">
+      <div class="exp-item">
+        <div class="exp-dot"></div>
+        <div class="exp-body">
+          <div class="exp-top">
+            <p class="exp-role">Frontend Developer Intern</p>
+            <span class="exp-badge">Internship</span>
+          </div>
+          <p class="exp-co">Match Me Auto Group Inc. | Pasay City</p>
+          <p class="exp-period">January 2026 – April 2026</p>
+          <ul class="exp-bullets">
+            <li>Developed and built a website using TypeScript and React with database monitoring via Supabase.</li>
+            <li>Collaborated with the team to create and implement user-friendly interfaces.</li>
+            <li>Created the Corporate View where users under corporate accounts manage job postings, bookings, and analytics.</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="divider"></div>
+
+  <!-- PROJECTS -->
+  <div class="section">
+    <p class="section-label">Projects</p>
+    <div>
+      <div class="project-row">
+        <div>
+          <p class="project-name">SMART Cafe — E-commerce for Blessings Cafe</p>
+          <p class="project-desc">Built with JavaScript, CSS, and EJS with MongoDB for database management. Features seamless order processing and Facebook Messenger chatbot integration.</p>
+          <div class="project-chips">
+            <span class="chip">JavaScript</span>
+            <span class="chip">EJS</span>
+            <span class="chip">CSS</span>
+            <span class="chip">MongoDB</span>
+          </div>
+        </div>
+        <a href="https://blessingsateverysip.me/" target="_blank" class="project-link-btn">
+          View
+          <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+        </a>
+      </div>
+      <div class="project-row">
+        <div>
+          <p class="project-name">Immaculate Heart of Mary Academy — School Landing Page</p>
+          <p class="project-desc">A responsive landing page built with modern web technologies to provide an engaging user experience for the school's online presence.</p>
+          <div class="project-chips">
+            <span class="chip">HTML</span>
+            <span class="chip">CSS</span>
+            <span class="chip">JavaScript</span>
+            <span class="chip">Vercel</span>
+          </div>
+        </div>
+        <a href="https://ihma.vercel.app/" target="_blank" class="project-link-btn">
+          View
+          <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+        </a>
+      </div>
+    </div>
+  </div>
+
+
+  <!-- EDUCATION + CONNECT -->
+  <div class="bottom-grid">
+    <div>
+      <p class="info-label">Education</p>
+      <a href="https://www.facebook.com/DLSU.Dasmariñas" target="_blank" title="De La Salle University – Dasmariñas">
+        <p class="info-main">De La Salle University – Dasmariñas</p>
+      </a>
+      <p class="info-sub">BS Information Technology</p>
+      <p class="info-sub">2022 – 2026</p>
+    </div>
+    <div>
+      <p class="info-label">Social Links</p>
+      <div class="connect-list">
+        <div class="connect-row">
+          <div class="connect-icon">✉</div>
+          <a href="mailto:divinokenchristian@gmail.com" class="connect-link">divinokenchristian@gmail.com</a>
+        </div>
+        <div class="connect-row">
+          <div class="connect-icon">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
+          </div>
+          <a href="https://www.linkedin.com/in/kenchristiandivino" target="_blank" class="connect-link">linkedin.com/in/kenchristiandivino</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+   <div class="divider"></div>
+  <footer align="center">&copy; 2025 Ken Christian Divino · All rights reserved.</footer>
+
+</div>
+</body>
+</html>
