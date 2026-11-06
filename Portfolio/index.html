@@ -6,7 +6,7 @@
   <title>Ken Christian Divino, Software Developer</title>
   <meta name="description" content="Ken Christian Divino is a software developer from Dasmariñas, Cavite, building efficient, scalable web apps with React, TypeScript and Supabase.">
   <meta name="theme-color" content="#f4efe6">
-  <!-- Tab icon (favicon). For best results use a small square image, e.g. a face crop saved as favicon.png (256x256 or 512x512) -->
+
   <link rel="icon" href="images/GradPic_Ken.jpg">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -57,7 +57,6 @@
 
     .wrap { max-width: 960px; margin: 0 auto; padding: 0 var(--gutter); }
 
-    /* ── NAV (floating pill) ── */
     .site-nav { position: sticky; top: .75rem; z-index: 10; padding: 0 var(--gutter); margin-top: .75rem; }
     .nav-pill {
       max-width: 960px; margin: 0 auto; height: 56px;
@@ -83,7 +82,6 @@
     .nav-toggle:hover { background: var(--paper-2); }
     .nav-toggle svg { display: block; width: 20px; height: 20px; }
 
-    /* ── BUTTONS ── */
     .actions { display: flex; flex-wrap: wrap; gap: .75rem; }
     .btn {
       display: inline-flex; align-items: center; justify-content: center;
@@ -104,7 +102,6 @@
     .btn--sm { padding: .55rem 1.05rem; font-size: .9rem; gap: .5rem; }
     .btn svg { width: 16px; height: 16px; flex-shrink: 0; }
 
-    /* ── HERO ── */
     .hero { position: relative; overflow: hidden; padding: 5rem 0 5.5rem; background: linear-gradient(180deg, var(--paper-2) 0%, var(--paper) 85%); }
     .hero::before {
       content: ""; position: absolute; right: -10%; top: -12%; width: 560px; height: 560px; border-radius: 50%;
@@ -143,7 +140,6 @@
     .lede { margin-top: 1rem; font-size: 1.25rem; line-height: 1.55; color: var(--ink-2); max-width: 30em; text-wrap: pretty; }
     .hero .actions { margin-top: 2.25rem; }
 
-    /* ── FLIP CARD ── */
     .card-side { position: relative; display: flex; flex-direction: column; align-items: center; gap: 1.25rem; }
     .card-side::before {
       content: ""; position: absolute; top: 0; left: 50%; width: var(--card-w); margin-left: calc(var(--card-w) / -2);
@@ -215,101 +211,65 @@
     .flip-hint { position: relative; z-index: 1; font-size: .85rem; color: var(--ink-3); display: inline-flex; align-items: center; gap: .45rem; }
     .flip-hint svg { width: 16px; height: 16px; }
 
-    /* ── SECTIONS ── */
-    main { counter-reset: sec; }
-    .block { padding-top: 5.5rem; }
+    .block {
+      display: grid;
+      grid-template-columns: 10rem minmax(0, 1fr);
+      gap: 1.5rem 3rem;
+      margin-top: 5rem;
+      padding-top: 2.25rem;
+      border-top: 1px solid var(--line-strong);
+    }
     .block > h2 {
-      counter-increment: sec;
-      display: flex; align-items: center; gap: .9rem;
-      font-family: var(--display); font-size: 1.9rem; font-weight: 700; line-height: 1.15; letter-spacing: -.025em;
-      margin-bottom: 2rem;
+      font-family: var(--display);
+      font-size: 1.5rem; font-weight: 800; line-height: 1.1; letter-spacing: -.03em;
+      position: sticky; top: 6rem; align-self: start;
     }
-    .block > h2::before {
-      content: "0" counter(sec);
-      font-family: var(--font); font-size: .75rem; font-weight: 600; letter-spacing: .08em;
-      color: var(--accent-ink); background: var(--accent-tint); padding: .25rem .65rem; border-radius: 999px;
-    }
-    .block > h2::after { content: ""; flex: 1; height: 1px; background: var(--line-strong); margin-left: .5rem; }
+    .block > h2::after { content: "."; color: var(--accent); }
 
-    /* about */
-    .about-grid { display: grid; grid-template-columns: minmax(0, 1.6fr) minmax(0, 1fr); gap: 2rem 3rem; align-items: start; }
-    .about { font-size: 1.2rem; line-height: 1.75; color: var(--ink-2); text-wrap: pretty; }
-    .facts { background: var(--card); border: 1px solid var(--line); border-radius: 22px; padding: .5rem 1.5rem; }
-    .facts div { padding: 1rem 0; border-top: 1px solid var(--line); }
-    .facts div:first-child { border-top: 0; }
-    .facts dt { font-size: .72rem; font-weight: 600; letter-spacing: .1em; text-transform: uppercase; color: var(--ink-3); }
-    .facts dd { margin-top: .15rem; font-weight: 500; line-height: 1.4; }
+    .about-lead { font-family: var(--display); font-size: clamp(1.35rem, 2.6vw, 1.7rem); font-weight: 600; line-height: 1.4; letter-spacing: -.02em; text-wrap: pretty; }
+    .about-more { margin-top: 1.25rem; font-size: 1.1rem; line-height: 1.75; color: var(--ink-2); text-wrap: pretty; max-width: 36em; }
+    .facts { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 1.25rem 2rem; margin-top: 2.25rem; padding-top: 1.5rem; border-top: 1px solid var(--line); }
+    .facts dt { font-size: .875rem; color: var(--ink-3); }
+    .facts dd { margin-top: .15rem; font-weight: 500; line-height: 1.45; }
 
-    /* skills */
-    .skills-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 1rem; }
-    .skill-card {
-      padding: 1.6rem; border-radius: 22px; border: 1px solid var(--line); background: var(--card);
-      transition: transform .25s ease, box-shadow .25s ease;
-    }
-    .skill-card:hover { transform: translateY(-3px); box-shadow: 0 16px 30px -18px rgba(27,42,34,.4); }
-    .skill-card:nth-child(1) { background: var(--butter-tint); }
-    .skill-card:nth-child(2) { background: var(--sage-tint); }
-    .skill-card:nth-child(3) { background: var(--accent-tint); }
-    .skill-card:nth-child(4) { background: var(--paper-2); }
-    .skill-card h3 { font-size: .75rem; font-weight: 600; letter-spacing: .1em; text-transform: uppercase; color: var(--ink-2); margin-bottom: 1.1rem; }
-    .skill-list { list-style: none; display: flex; flex-wrap: wrap; gap: .55rem; }
-    .skill-list li {
-      display: inline-flex; align-items: center; gap: .5rem;
-      padding: .4rem .85rem .4rem .65rem; border-radius: 999px;
-      background: var(--card); border: 1px solid var(--line); font-weight: 500; font-size: .95rem;
-    }
+    .ledger-row { display: grid; grid-template-columns: 8.5rem minmax(0, 1fr); gap: .5rem 1.5rem; padding: 1.15rem 0; border-top: 1px solid var(--line); align-items: baseline; }
+    .ledger-row:first-child { border-top: 0; padding-top: 0; }
+    .ledger-row h3 { font-size: .9rem; font-weight: 500; color: var(--ink-3); }
+    .skill-list { list-style: none; display: flex; flex-wrap: wrap; gap: .6rem 1.5rem; }
+    .skill-list li { display: inline-flex; align-items: center; gap: .5rem; font-size: 1.05rem; font-weight: 500; }
     .skill-list img, .skill-list svg {
       width: 20px; height: 20px; object-fit: contain; flex-shrink: 0;
-      filter: grayscale(1); opacity: .7; transition: filter .25s, opacity .25s;
+      filter: grayscale(1); opacity: .65; transition: filter .25s, opacity .25s;
     }
     .skill-list li:hover img, .skill-list li:hover svg { filter: none; opacity: 1; }
 
-    /* experience + education */
-    .entry {
-      display: grid; grid-template-columns: 11rem 1fr; gap: .75rem 2rem;
-      padding: 1.9rem; background: var(--card); border: 1px solid var(--line); border-radius: 24px;
-    }
-    .entry-when { font-size: .9rem; color: var(--ink-3); }
-    .entry-when span { display: block; }
-    .entry-when span:first-child { display: inline-block; color: var(--sage); background: var(--sage-tint); font-weight: 600; padding: .2rem .7rem; border-radius: 999px; margin-bottom: .4rem; }
-    .entry h3 { font-family: var(--display); font-size: 1.3rem; font-weight: 700; letter-spacing: -.02em; line-height: 1.3; }
-    .entry-org { color: var(--accent-ink); font-weight: 500; margin-top: .15rem; }
+    .entry-when { font-size: .9rem; color: var(--ink-3); margin-bottom: .35rem; }
+    .entry h3 { font-family: var(--display); font-size: 1.4rem; font-weight: 700; letter-spacing: -.02em; line-height: 1.25; }
+    .entry-org { color: var(--accent-ink); font-weight: 500; margin-top: .2rem; }
     .entry-org a { text-decoration: none; }
     .entry-org a:hover { text-decoration: underline; text-underline-offset: .2em; }
-    .entry ul { margin-top: 1rem; padding-left: 1.1rem; color: var(--ink-2); display: flex; flex-direction: column; gap: .55rem; max-width: 40em; }
+    .entry ul { margin-top: 1.1rem; padding-left: 1.1rem; color: var(--ink-2); display: flex; flex-direction: column; gap: .55rem; max-width: 40em; }
     .entry li::marker { color: var(--accent); }
 
-    /* projects */
-    .projects { display: grid; gap: 1.25rem; }
-    .project {
-      padding: 2rem; background: var(--card); border: 1px solid var(--line); border-radius: 24px;
-    }
-    .project-head { display: flex; align-items: center; flex-wrap: wrap; gap: .5rem 1rem; }
-    .project h3 { font-family: var(--display); font-size: 1.35rem; font-weight: 700; letter-spacing: -.02em; line-height: 1.25; transition: color .2s; }
+    .project { padding-bottom: 3rem; margin-bottom: 3rem; border-bottom: 1px solid var(--line); }
+    .project:last-child { padding-bottom: 0; margin-bottom: 0; border-bottom: 0; }
+    .project h3 { font-family: var(--display); font-size: 1.5rem; font-weight: 700; letter-spacing: -.02em; line-height: 1.25; transition: color .2s; }
     .project p { margin-top: .6rem; color: var(--ink-2); max-width: 40em; }
-    .chips { list-style: none; display: flex; flex-wrap: wrap; gap: .4rem; margin-top: 1.1rem; }
-    .chips li { font-size: .8rem; font-weight: 500; color: var(--sage); background: var(--sage-tint); padding: .18rem .7rem; border-radius: 999px; }
+    .project .made-with { margin-top: 1rem; font-size: .9rem; color: var(--ink-3); }
     .project .actions { margin-top: 1.4rem; }
 
-    /* project that is one big link (live site) */
-    .project--link {
-      display: grid; grid-template-columns: 1fr auto; gap: 1.5rem; align-items: center;
-      text-decoration: none; color: inherit;
-      transition: transform .25s ease, box-shadow .25s ease, border-color .25s;
-    }
-    .project--link:hover { transform: translateY(-3px); border-color: var(--accent); box-shadow: 0 18px 34px -20px rgba(27,42,34,.45); }
+    .project--link { display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: 1.5rem; align-items: start; text-decoration: none; color: inherit; }
     .project--link:hover h3 { color: var(--accent); }
     .visit {
-      display: inline-flex; align-items: center; gap: .55rem; white-space: nowrap;
-      font-size: .925rem; font-weight: 500; color: var(--ink);
-      padding: .6rem 1.1rem; border-radius: 999px; border: 1px solid var(--line-strong); background: var(--paper);
-      transition: background .2s, color .2s, border-color .2s;
+      display: inline-flex; align-items: center; gap: .45rem; white-space: nowrap;
+      font-size: .95rem; font-weight: 500; color: var(--ink);
+      padding-bottom: .15rem; border-bottom: 1.5px solid var(--ink);
+      transition: color .2s, border-color .2s;
     }
     .visit svg { width: 16px; height: 16px; transition: transform .25s ease; }
-    .project--link:hover .visit { background: var(--accent); border-color: var(--accent); color: #fff; }
+    .project--link:hover .visit { color: var(--accent); border-color: var(--accent); }
     .project--link:hover .visit svg { transform: translate(2px, -2px); }
 
-    /* screenshots */
     .shots {
       list-style: none; margin-top: 1.9rem;
       display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 1rem;
@@ -331,7 +291,6 @@
     .shot-label { position: absolute; inset: 22px 0 0; display: grid; place-items: center; font-size: .8rem; font-weight: 500; opacity: .8; text-align: center; padding: .5rem; }
     .shot img { position: absolute; inset: 22px 0 0; width: 100%; height: calc(100% - 22px); object-fit: cover; object-position: top; background: var(--card); }
 
-    /* lightbox */
     .lightbox {
       border: 0; background: transparent; padding: 0; margin: auto;
       max-width: min(1100px, 94vw); max-height: 92vh; overflow: visible; color: #fff;
@@ -352,7 +311,6 @@
     .lb-prev { left: -14px; top: 50%; transform: translateY(-50%); }
     .lb-next { right: -14px; top: 50%; transform: translateY(-50%); }
 
-    /* socials */
     .socials { list-style: none; border-top: 1px solid var(--line-strong); }
     .social {
       display: flex; align-items: center; gap: 1rem;
@@ -398,7 +356,8 @@
       .card-side::before { left: 0; margin-left: 0; }
       .qr-tile { width: 150px; height: 150px; padding: 11px; }
       .face--back { gap: .75rem; padding: 1rem; }
-      .about-grid { grid-template-columns: 1fr; }
+      .block { grid-template-columns: 1fr; gap: 1.25rem; }
+      .block > h2 { position: static; }
     }
     @media (max-width: 680px) {
       .site-nav { top: .5rem; margin-top: .5rem; }
@@ -415,11 +374,9 @@
       .hero h1 { font-size: clamp(2.35rem, 12vw, 3.5rem); }
       .hero .actions { width: 100%; }
       .hero .actions .btn { flex: 1 1 10rem; }
-      .block { padding-top: 4rem; }
-      .block > h2 { font-size: 1.8rem; }
-      .skills-grid { grid-template-columns: 1fr; }
-      .entry { grid-template-columns: 1fr; gap: .5rem; padding: 1.5rem; }
-      .project { padding: 1.5rem; }
+      .block { margin-top: 3.5rem; }
+      .facts { grid-template-columns: 1fr; }
+      .ledger-row { grid-template-columns: 1fr; gap: .4rem; }
       .project--link { grid-template-columns: 1fr; gap: 1rem; }
       .project--link .visit { justify-self: start; }
       .shots { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: .75rem; }
@@ -481,7 +438,6 @@
                       <span class="initials" aria-hidden="true">KD</span>
                       <img src="images/GradPic_Ken.jpg" alt="Portrait of Ken Christian Divino" onerror="this.remove()">
                       <div class="photo-cap">
-                        <span>Ken Divino</span>
                       </div>
                     </div>
                   </div>
@@ -506,13 +462,11 @@
 
     <div class="wrap">
 
-      <!-- ABOUT -->
       <section class="block reveal" id="about">
         <h2>About</h2>
-        <div class="about-grid">
-          <p class="about">I'm an IT graduate with a strong interest in software development and creating practical digital solutions. I enjoy transforming ideas into functional, intuitive applications while exploring new technologies and improving my technical skills.
-
-Through my internship and personal projects, I've gained experience in developing web applications and translating concepts into real-world solutions. I'm always eager to learn, take on new challenges, and grow as a developer.</p>
+        <div>
+          <p class="about-more">An individual with a strong interest in software development and creating practical digital solutions. I enjoy transforming ideas into functional, intuitive applications while exploring new technologies and improving my technical skills.</p>
+          <p class="about-more">Through my internship and personal projects, I've gained experience in developing web applications and translating concepts into real-world solutions. I'm always eager to learn, take on new challenges, and grow as a developer.</p>
           <dl class="facts">
             <div><dt>Based in</dt><dd>Dasmariñas, Cavite, Philippines</dd></div>
             <div><dt>Education</dt><dd>BS Information Technology, De La Salle University – Dasmariñas</dd></div>
@@ -520,11 +474,11 @@ Through my internship and personal projects, I've gained experience in developin
         </div>
       </section>
 
-      <!-- SKILLS -->
+      
       <section class="block reveal" id="skills">
         <h2>Tech stack</h2>
-        <div class="skills-grid">
-          <div class="skill-card">
+        <div class="ledger">
+          <div class="ledger-row">
             <h3>Languages</h3>
             <ul class="skill-list">
               <li><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg" alt="" loading="lazy">JavaScript</li>
@@ -533,7 +487,7 @@ Through my internship and personal projects, I've gained experience in developin
               <li><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/cplusplus/cplusplus-original.svg" alt="" loading="lazy">C++</li>
             </ul>
           </div>
-          <div class="skill-card">
+          <div class="ledger-row">
             <h3>Frontend</h3>
             <ul class="skill-list">
               <li><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg" alt="" loading="lazy">React</li>
@@ -542,7 +496,7 @@ Through my internship and personal projects, I've gained experience in developin
               <li><svg viewBox="0 0 32 32" fill="none" aria-hidden="true"><rect width="32" height="32" rx="6" fill="#A9BA9D"/><text x="5" y="22" font-size="14" font-family="monospace" fill="#fff">&lt;%</text></svg>EJS</li>
             </ul>
           </div>
-          <div class="skill-card">
+          <div class="ledger-row">
             <h3>Backend and database</h3>
             <ul class="skill-list">
               <li><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mysql/mysql-original.svg" alt="" loading="lazy">MySQL</li>
@@ -550,7 +504,7 @@ Through my internship and personal projects, I've gained experience in developin
               <li><svg viewBox="0 0 109 113" fill="none" aria-hidden="true"><path d="M63.7 0L0 63.7L27 90.7L90.7 27L63.7 0Z" fill="#3ECF8E"/><path d="M0 63.7L63.7 127.4L90.7 100.4L27 36.7L0 63.7Z" fill="#3ECF8E" fill-opacity="0.6"/></svg>Supabase</li>
             </ul>
           </div>
-          <div class="skill-card">
+          <div class="ledger-row">
             <h3>Tools</h3>
             <ul class="skill-list">
               <li><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/figma/figma-original.svg" alt="" loading="lazy">Figma</li>
@@ -563,36 +517,28 @@ Through my internship and personal projects, I've gained experience in developin
         </div>
       </section>
 
-      <!-- EXPERIENCE -->
       <section class="block reveal" id="experience">
         <h2>Experience</h2>
         <div class="entry">
-          <p class="entry-when"><span>January 2026 – April 2026</span><span>Internship</span></p>
-          <div>
-            <h3>Frontend Developer Intern</h3>
-            <p class="entry-org">Match Me Auto Group Inc., Pasay City</p>
-            <ul>
-              <li>Developed and built a website using TypeScript and React with database monitoring via Supabase.</li>
-              <li>Collaborated with the team to create and implement user-friendly interfaces.</li>
-              <li>Created the Corporate View where users under corporate accounts manage job postings, bookings, and analytics.</li>
-            </ul>
-          </div>
+          <p class="entry-when">January 2026 – April 2026, Internship</p>
+          <h3>Frontend Developer Intern</h3>
+          <p class="entry-org">Match Me Auto Group Inc., Pasay City</p>
+          <ul>
+            <li>Developed and built a website using TypeScript and React with database monitoring via Supabase.</li>
+            <li>Collaborated with the team to create and implement user-friendly interfaces.</li>
+            <li>Created the Corporate View where users under corporate accounts manage job postings, bookings, and analytics.</li>
+          </ul>
         </div>
       </section>
 
-      <!-- PROJECTS -->
       <section class="block reveal" id="projects">
         <h2>Projects</h2>
         <div class="projects">
 
-          <!-- Project 1: SMART Cafe
-               TODO: replace the href below with the real repository URL -->
           <article class="project" data-gallery="smart-cafe">
-            <div class="project-head">
-              <h3>SMART Cafe, E-commerce system for Blessings Cafe</h3>
-            </div>
+            <h3>SMART Cafe, E-commerce system for Blessings Cafe</h3>
             <p>A Capstone Project built with JavaScript, CSS, and EJS with MongoDB for database management. Features seamless order processing and Facebook Messenger chatbot integration.</p>
-            <ul class="chips"><li>JavaScript</li><li>EJS</li><li>CSS</li><li>MongoDB</li></ul>
+            <p class="made-with">Built with JavaScript, EJS, CSS and MongoDB</p>
             <div class="actions">
               <a class="btn btn--outline btn--sm" href="https://github.com/roviczzz/Couche-Co" target="_blank" rel="noopener noreferrer">
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m16 18 6-6-6-6"/><path d="m8 6-6 6 6 6"/></svg>
@@ -611,13 +557,12 @@ Through my internship and personal projects, I've gained experience in developin
                 <img src="images/BlessingsSystem_3.png" alt="SMART Cafe order checkout" loading="lazy" onerror="this.remove()"></button></li>
             </ul>
           </article>
-
-          <!-- Project 2: IHMA landing page (live on Vercel, whole card is a link) -->
+>
           <a class="project project--link" href="https://ihma.vercel.app/" target="_blank" rel="noopener noreferrer">
             <div>
               <h3>Immaculate Heart of Mary Academy, school landing page</h3>
               <p>A responsive landing page built with modern web technologies to provide an engaging user experience for the school's online presence.</p>
-              <ul class="chips"><li>HTML</li><li>CSS</li><li>JavaScript</li><li>Vercel</li></ul>
+              <p class="made-with">Built with HTML, CSS, JavaScript and Vercel</p>
             </div>
             <span class="visit">Visit site
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7"/><path d="M8 7h9v9"/></svg>
@@ -627,19 +572,15 @@ Through my internship and personal projects, I've gained experience in developin
         </div>
       </section>
 
-      <!-- EDUCATION -->
       <section class="block reveal" id="education">
         <h2>Education</h2>
         <div class="entry">
-          <p class="entry-when"><span>2022 – 2026</span></p>
-          <div>
-            <h3>BS Information Technology</h3>
-            <p class="entry-org"><a href="https://www.facebook.com/DLSU.Dasmariñas" target="_blank" rel="noopener noreferrer">De La Salle University – Dasmariñas</a></p>
-          </div>
+          <p class="entry-when">2022 – 2026</p>
+          <h3>BS Information Technology</h3>
+          <p class="entry-org"><a href="https://www.facebook.com/DLSU.Dasmariñas" target="_blank" rel="noopener noreferrer">De La Salle University – Dasmariñas</a></p>
         </div>
       </section>
 
-      <!-- SOCIALS -->
       <section class="block reveal" id="contact">
         <h2>Socials</h2>
         <ul class="socials">
@@ -678,7 +619,6 @@ Through my internship and personal projects, I've gained experience in developin
     </div>
   </main>
 
-  <!-- SCREENSHOT LIGHTBOX -->
   <dialog class="lightbox" id="lightbox" aria-label="Screenshot viewer">
     <div class="lb-stage">
       <img class="lb-img" id="lb-img" alt="">
@@ -699,7 +639,6 @@ Through my internship and personal projects, I've gained experience in developin
   <script>
     document.getElementById('year').textContent = new Date().getFullYear();
 
-    // Keep section navigation shareable without exposing hash fragments.
     (function () {
       var routes = {
         '/about': 'about',
@@ -770,6 +709,7 @@ Through my internship and personal projects, I've gained experience in developin
     // Local time in the Philippines
     (function () {
       var el = document.getElementById('clock');
+      if (!el) return;
       function tick() {
         try {
           var t = new Intl.DateTimeFormat('en-US', { hour: 'numeric', minute: '2-digit', timeZone: 'Asia/Manila' }).format(new Date());
